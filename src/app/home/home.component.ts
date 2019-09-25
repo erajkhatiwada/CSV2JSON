@@ -16,27 +16,17 @@ export class HomeComponent implements OnInit {
 
   convertFile(csv: any) {
 
-    //this.fileReaded = csv.target.files[0];
-
     let reader: FileReader = new FileReader();
     this.fileReaded = csv.target.files[0];
-
     console.log(this.fileReaded);
-
-    // reader.readAsText(this.fileReaded);
-
-    // reader.onload = (e) => {
-    //   let csv = reader.result;
-    //   console.log(csv);
-    // }
 
     reader.readAsText(this.fileReaded);
 
     reader.onload = (e) => {
       let csv = reader.result;
-      console.log(csv);
-      
+      let arr = csv.toString().split(/\r|\n|\r/);
+      console.log(arr);
     } 
-
+    
   }
 }
