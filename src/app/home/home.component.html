@@ -1,7 +1,42 @@
-<input type="file" accept=".csv" (change)="convertFile($event)" />  
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/1200px-JSON_vector_logo.svg.png"
+      width="30" height="30" class="d-inline-block align-top" alt="">
+    CSV2JSON
+  </a>
+</nav>
 
-<a href="" style="display: none" id="a" download> Download </a>
+<div class="jumbotron backgroundPicture">
+    <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5 text-center cusheader">Convert CSV to JSON</h1>
+            <hr class="my-4">
+          </div>
+          
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <!-- <form> -->
+              <div class="form-row">
+                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                  <input type="file" accept=".csv" (change)="convertFile($event)" class="form-control form-control-lg" placeholder="Enter your email...">
+                </div>
+                <div class="col-12 col-md-3">
+                  <button type="submit" (click)="download()" class="btn btn-block btn-lg btn-primary" [disabled]="!isDownloadReady">Download</button>
+                </div>
+              </div>
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+  </div>
+  
+<div class="container">
+  <!-- <input class="btn btn-outline-secondary" type="file" accept=".csv" (change)="convertFile($event)" /> -->
+  <!-- <button (click)="download()" *ngIf="isDownloadReady">Download Here</button> -->
+  <a href="" style="display: none" id="a" download> Download </a>
+  <p class="text-center text-success">{{message}}</p>
+</div> 
 
-<button (click)="download()" *ngIf="isDownloadReady">Download Here</button>
 
-<p>{{message}}</p>

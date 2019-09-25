@@ -6,7 +6,7 @@ import {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   fileReaded: any;
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
 
     reader.onloadend = (e) => {
       this.isDownloadReady = true;
-      this.message = 'Json file is done. Click on download button';
+      this.message = 'The file is converted successfully. Click on download button to download .json file.';
     }
 
     
