@@ -1,6 +1,9 @@
 {
   "name": "csv2-json",
   "version": "0.0.0",
+  "engines": {
+    "node": "10.15.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
