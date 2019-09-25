@@ -10,6 +10,8 @@ import {
 })
 export class HomeComponent implements OnInit {
   fileReaded;
+  bloadLink: any;
+  isDownloadReady: boolean = false;
   constructor() {}
 
   ngOnInit() {}
@@ -22,23 +24,23 @@ export class HomeComponent implements OnInit {
     console.log(this.fileReaded);
 
     reader.readAsText(this.fileReaded);
-
+    this.isDownloadReady = true;
     reader.onload = (e) => {
       let csv = reader.result;
-      let arr  = csv.toString().split(/\r|\n|\r/);
+      let arr = csv.toString().split(/\r|\n|\r/);
 
       let property = arr[0].split(',');
-      console.log(arr,"Main array");
-      console.log(property,"Properties");
+      console.log(arr, "Main array");
+      console.log(property, "Properties");
 
       let jsonArray = [];
 
-      for(let index in arr){
-        if(parseInt(index) != 0){
-          if(arr[index] !== ""){
+      for (let index in arr) {
+        if (parseInt(index) != 0) {
+          if (arr[index] !== "") {
             let obj = arr[index].split(',');
             let jsonObj = {};
-            for(let propIndex in property){
+            for (let propIndex in property) {
               jsonObj[property[propIndex]] = obj[propIndex];
             }
             jsonArray.push(jsonObj);
@@ -47,19 +49,19 @@ export class HomeComponent implements OnInit {
       }
 
       console.log(jsonArray, "JSON array");
-       
-      const a = document.createElement("a");
-      a.style.display = "none";
-      document.body.appendChild(a);
 
-      let x = new Blob([JSON.stringify(jsonArray)],{type: 'application/json'});
+      const a = < HTMLLinkElement > document.getElementById("a");
+      
+      console.log(a);
+      let x = new Blob([JSON.stringify(jsonArray)], {
+        type: 'application/json',
+      });
+    
       a.href = URL.createObjectURL(x);
-
-      a.download = 'download.json';
+      
       a.click();
-   
 
-    } 
 
+    }
   }
 }
