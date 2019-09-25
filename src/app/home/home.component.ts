@@ -9,22 +9,27 @@ import {
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  fileReaded;
+  fileReaded: any;
   bloadLink: any;
   isDownloadReady: boolean = false;
+
+  message:any;
+
   constructor() {}
 
   ngOnInit() {}
 
   convertFile(csv: any) {
 
-    let reader: FileReader = new FileReader();
+    let reader: FileReader = new FileReader();      //file reader object
 
-    this.fileReaded = csv.target.files[0];
-    console.log(this.fileReaded);
+    this.fileReaded = csv.target.files[0];          //get file details
+    //console.log(this.fileReaded);
+    reader.readAsText(this.fileReaded);             //reading as text 
 
-    reader.readAsText(this.fileReaded);
-    this.isDownloadReady = true;
+    //this.isDownloadReady = true;                    // <-- should think of a better way
+
+    // when the reader is loading
     reader.onload = (e) => {
       let csv = reader.result;
       let arr = csv.toString().split(/\r|\n|\r/);
@@ -51,17 +56,31 @@ export class HomeComponent implements OnInit {
       console.log(jsonArray, "JSON array");
 
       const a = < HTMLLinkElement > document.getElementById("a");
-      
+
       console.log(a);
       let x = new Blob([JSON.stringify(jsonArray)], {
         type: 'application/json',
       });
-    
+
       a.href = URL.createObjectURL(x);
-      
-      a.click();
+      this.bloadLink = a.href;
 
-
+      //a.click();
     }
+
+    reader.onloadend = (e) => {
+      this.isDownloadReady = true;
+      this.message = 'Json file is done. Click on download button';
+    }
+
+    
+  }
+
+  /**
+   * Method to download the converted json
+   */
+  download(): void {
+    var x = < HTMLLinkElement > document.getElementById("a");
+    x.click();
   }
 }

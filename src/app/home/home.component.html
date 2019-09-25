@@ -1,3 +1,7 @@
 <input type="file" accept=".csv" (change)="convertFile($event)" />  
 
-<a href="" id="a" download *ngIf="isDownloadReady">Download</a>
+<a href="" style="display: none" id="a" download> Download </a>
+
+<button (click)="download()" *ngIf="isDownloadReady">Download Here</button>
+
+<p>{{message}}</p>
