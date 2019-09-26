@@ -12,8 +12,7 @@ export class HomeComponent implements OnInit {
   fileReaded: any;
   bloadLink: any;
   isDownloadReady: boolean = false;
-
-  message:any;
+  message: any;
 
   constructor() {}
 
@@ -21,13 +20,10 @@ export class HomeComponent implements OnInit {
 
   convertFile(csv: any) {
 
-    let reader: FileReader = new FileReader();      //file reader object
+    let reader: FileReader = new FileReader(); //file reader object
 
-    this.fileReaded = csv.target.files[0];          //get file details
-    //console.log(this.fileReaded);
-    reader.readAsText(this.fileReaded);             //reading as text 
-
-    //this.isDownloadReady = true;                    // <-- should think of a better way
+    this.fileReaded = csv.target.files[0]; //get file details
+    reader.readAsText(this.fileReaded); //reading as text 
 
     // when the reader is loading
     reader.onload = (e) => {
@@ -35,10 +31,10 @@ export class HomeComponent implements OnInit {
       let arr = csv.toString().split(/\r|\n|\r/);
 
       let property = arr[0].split(',');
-      console.log(arr, "Main array");
-      console.log(property, "Properties");
+      // console.log(arr, "Main array");
+      // console.log(property, "Properties");
 
-      let jsonArray = [];
+      let jsonArray = []; // data array
 
       for (let index in arr) {
         if (parseInt(index) != 0) {
@@ -52,28 +48,21 @@ export class HomeComponent implements OnInit {
           }
         }
       }
-
-      console.log(jsonArray, "JSON array");
-
+      //console.log(jsonArray, "JSON array");
       const a = < HTMLLinkElement > document.getElementById("a");
-
-      console.log(a);
+      //console.log(a);
       let x = new Blob([JSON.stringify(jsonArray)], {
         type: 'application/json',
       });
 
       a.href = URL.createObjectURL(x);
       this.bloadLink = a.href;
-
-      //a.click();
     }
 
     reader.onloadend = (e) => {
       this.isDownloadReady = true;
       this.message = 'The file is converted successfully. Click on download button to download .json file.';
     }
-
-    
   }
 
   /**
@@ -83,4 +72,5 @@ export class HomeComponent implements OnInit {
     var x = < HTMLLinkElement > document.getElementById("a");
     x.click();
   }
+
 }
