@@ -1,5 +1,9 @@
 # CSV2JSON
 
+## Click the link below to use the app
+
+Link: <a href="https://csv2json-760e7.firebaseapp.com/" target="_blank">CSV2JSON</a>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
 ## Development server
