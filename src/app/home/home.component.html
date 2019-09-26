@@ -2,10 +2,13 @@
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/1200px-JSON_vector_logo.svg.png"
+      src="../../assets/1200px-JSON_vector_logo.svg.png"
       width="30" height="30" class="d-inline-block align-top" alt="">
     CSV2JSON
   </a>
+  <span class="navbar-text">
+    Developed by: <u><a href="https://github.com/erajkhatiwada" target="_blank">Eraj Khatiwada</a></u>
+  </span>
 </nav>
 
 <div class="jumbotron backgroundPicture">
@@ -34,7 +37,8 @@
   
 <div class="container">
   <a href="" style="display: none" id="a" download> Download </a>
-  <p class="text-center text-success">{{message}}</p>
+  <p class="text-center text-success" *ngIf="message">{{message}}</p>
+  <p class="text-center text-danger" *ngIf="errorMessage">{{errorMessage}}</p>
 </div> 
 
 

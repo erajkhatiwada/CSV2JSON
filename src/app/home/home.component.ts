@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   bloadLink: any;
   isDownloadReady: boolean = false;
   message: any;
+  errorMessage: any;
 
   constructor() {}
 
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit {
 
     // when the reader is loading
     reader.onload = (e) => {
+      this.errorMessage = "";
+      this.message = "";
       let csv = reader.result;
       let arr = csv.toString().split(/\r|\n|\r/);
 
@@ -59,10 +62,23 @@ export class HomeComponent implements OnInit {
       this.bloadLink = a.href;
     }
 
+    reader.onerror = (e) => {
+      console.error(e);
+      this.errorMessage = "Something went wrong. Please put a valid csv file.";
+      reader.abort();
+    }
+
     reader.onloadend = (e) => {
       this.isDownloadReady = true;
       this.message = 'The file is converted successfully. Click on download button to download .json file.';
+
+      setTimeout(() => {
+        this.message = "";
+        reader.abort();
+      }, 6000);
     }
+
+
   }
 
   /**
@@ -73,4 +89,4 @@ export class HomeComponent implements OnInit {
     x.click();
   }
 
-}
+} 
