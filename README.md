@@ -1,6 +1,6 @@
 # CSV2JSON
 
-## Click the link below to use the app
+## Click the link below to use the web-app
 
 Link: <a href="https://csv2json-760e7.firebaseapp.com/" target="_blank">CSV2JSON</a>
 
